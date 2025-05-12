@@ -42,6 +42,7 @@ def send_to_make(json_filename, webhook_url):
         headers = {'Content-Type': 'application/json'}
         response = requests.post(webhook_url, json=data, headers=headers)
         logging.info(f'Статус отправки в Make: {response.status_code}')
+        logging.info(f'Ответ Make: {response.text}')
         return response.status_code == 200
     except Exception as e:
         logging.error(f'Ошибка при отправке в Make: {e}')
