@@ -38,9 +38,9 @@ def setup_driver():
 def send_to_make(json_filename, webhook_url):
     try:
         with open(json_filename, 'r', encoding='utf-8') as f:
-            data = f.read()
+            data = json.load(f)
         headers = {'Content-Type': 'application/json'}
-        response = requests.post(webhook_url, data=data, headers=headers)
+        response = requests.post(webhook_url, json=data, headers=headers)
         logging.info(f'Статус отправки в Make: {response.status_code}')
         return response.status_code == 200
     except Exception as e:
