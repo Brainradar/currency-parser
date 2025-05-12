@@ -107,7 +107,11 @@ def get_currency_rates():
         filename = f"currency_rates_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-            
+        
+        # Логируем содержимое JSON-файла
+        with open(filename, 'r', encoding='utf-8') as f:
+            logging.info(f"Содержимое JSON для отправки в Make:\n{f.read()}")
+        
         logging.info(f"Данные успешно сохранены в файл {filename}")
 
         # Отправляем в Make
