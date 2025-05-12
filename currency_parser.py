@@ -30,8 +30,8 @@ def setup_driver():
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--window-size=1920,1080')
     
-    # В Docker используем chromedriver из PATH
-    service = Service('chromedriver')
+    # В Docker/Render явно указываем путь к chromedriver
+    service = Service('/usr/local/bin/chromedriver')
     driver = webdriver.Chrome(service=service, options=chrome_options)
     return driver
 
