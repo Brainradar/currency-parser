@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: currency-parser
+    env: docker
+    plan: free
+    schedule: "0 9 * * *"  # Запуск каждый день в 9:00 UTC
+    buildCommand: docker build -t currency-parser .
+    startCommand: docker run currency-parser 
